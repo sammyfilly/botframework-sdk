@@ -1,16 +1,18 @@
 # ![Bot Framework](./docs/media/BotFrameworkSDK.png)
 
+## *Have you tried Power Virtual Agents?*
+[Power Virtual Agents](https://powervirtualagents.microsoft.com/) is Microsoft's SaaS experience for creating conversational apps. It's part of the Power Platform, and offers a powerful GUI-driven authoring experience for developers and power-users alike.
+
 ### [What's new with Bot Framework?](https://docs.microsoft.com/en-us/azure/bot-service/what-is-new?view=azure-bot-service-4.0)
 
-Bot Framework provides the most comprehensive experience for building conversation applications.
+The Bot Framework SDKs are a framework for authoring conversational apps built on top of the Azure Bot Service.
 
 With the [Bot Framework SDK](#bot-framework-sdk-v4), developers can build bots that converse free-form or with guided interactions including using simple text or rich cards that contain text, images, and action buttons.
 
-Developers can model and build sophisticated conversation using their favorite programming languages including C#, JS, Python and Java or using [Bot Framework Composer](https://aka.ms/bfcomposer), an open-source, visual authoring canvas for developers and multi-disciplinary teams to design and build conversational experiences with Language Understanding, QnA Maker and sophisticated composition of bot replies (Language Generation).
-
 Checkout the [Bot Framework ecosystem](#bot-framework-ecosystem) section to learn more about other tooling and services related to the Bot Framework SDK.
 
-![Bot Framework SDK](./docs/media/GitHubBannerV2.gif)
+### Java and Python deprecation
+The Java and Python versions of the Bot Framework SDK are in sustained engineering, and are scheduled to be deprecated on July 1st, 2023. They will only receive security updates and critical bug fixes moving forward.
 
 ## Quicklinks
 | [Bot Framework Composer](https://aka.ms/bfcomposer)  | [C# Repo](https://github.com/Microsoft/botbuilder-dotnet)  | [JS Repo](https://github.com/Microsoft/botbuilder-js)  | [Python Repo](https://github.com/Microsoft/botbuilder-python) |  [Java Repo](https://github.com/Microsoft/botbuilder-java) | [BF CLI](https://github.com/Microsoft/botframework-cli) |
@@ -111,7 +113,6 @@ We track functional issues and features asks for the Bot Framework SDK, tools an
 | SDK v4 JavaScript           | core bot runtime for Typescript/Javascript, connectors, middleware, dialogs, prompts, LUIS and QnA | [File an issue][70jsissues]       |
 | SDK v4 Python               | core bot runtime for Python, connectors, middleware, dialogs, prompts, LUIS and QnA                | [File an issue][70pyissues]       |
 | SDK v4 Java                 | core bot runtime for Java, connectors, middleware, dialogs, prompts, LUIS and QnA                  | [File an issue][70jaissues]       |
-| Bot Framework Composer      | bot framework composer electron and web app                                                        | [File an issue][70composerissues] |
 | Bot Framework CLI           | bot framework cli tools                                                                            | [File an issue][70cliissues]  |
 | Webchat                     | bot framework web chat tool                                                                        | [File an issue][70webchatissues]  |
 
@@ -120,16 +121,10 @@ We track functional issues and features asks for the Bot Framework SDK, tools an
 [70pyissues]:https://github.com/Microsoft/botbuilder-python/issues
 [70jaissues]:https://github.com/Microsoft/botbuilder-java/issues
 [70cliissues]:https://github.com/Microsoft/botframework-cli/issues
-[70composerissues]:https://github.com/Microsoft/botframework-composer/issues
 [70webchatissues]:https://github.com/Microsoft/botframework-webchat/issues
-
-## Prior releases
-
-- Bot Builder v3 SDK has been migrated to the [Bot Framework SDK V3](https://github.com/microsoft/botbuilder-v3) repository.
 
 ## Bot Framework ecosystem
 
-- [Bot Framework Composer](#Bot-Framework-Composer)
 - [Botkit](#Botkit)
 - [Azure Bot Service](#Azure-Bot-Service)
 - [Bot Framework Emulator](#Bot-Framework-Emulator)
@@ -141,9 +136,6 @@ We track functional issues and features asks for the Bot Framework SDK, tools an
 - [Speech Services](#Speech-Services)
 - [Adaptive cards](#Adaptive-Cards)
 - [Analytics](#Analytics)
-
-### Bot Framework Composer
-[Bot Framework Composer](https://github.com/microsoft/BotFramework-Composer/blob/main/README.md) is an integrated development tool for developers and multi-disciplinary teams to build bots and conversational experiences with the Microsoft Bot Framework. Within this tool, you'll find everything you need to build a sophisticated conversational experience.
 
 ### Botkit
 [Botkit][100] is a developer tool and SDK for building chat bots, apps and custom integrations for major messaging platforms. Botkit bots `hear()` triggers, `ask()` questions and `say()` replies. Developers can use this syntax to build dialogs - now cross compatible with the latest version of Bot Framework SDK.
@@ -175,7 +167,7 @@ Azure Bot Service enables you to host intelligent, enterprise-grade bots with co
 [29]:https://docs.microsoft.com/en-us/azure/bot-service/bot-service-manage-channels?view=azure-bot-service-4.0
 [30]:https://github.com/Microsoft/BotFramework-DirectLineJS/blob/main/README.md
 
-* **Better isolation for your Bot - Direct Line App Service Extension** : The Direct Line App Service Extension can be deployed as part of a VNET, allowing IT administrators to have more control over conversation traffic and improved latency in conversations due to reduction in the number of hops. Get started with Direct Line App Service Extension here. A VNET lets you create your own private space in Azure and is crucial to your cloud network as it offers isolation, segmentation, and other key benefits.
+* **Direct Line App Service Extension** : The Direct Line App Service Extension can be deployed as part of a VNET, allowing IT administrators to have more control over conversation traffic and improved latency in conversations due to reduction in the number of hops. Get started with Direct Line App Service Extension here. A VNET lets you create your own private space in Azure and is crucial to your cloud network as it offers isolation, segmentation, and other key benefits.
 
 ### Bot Framework Emulator
 The [Bot Framework Emulator][60] is a  cross-platform desktop application that allows bot developers to test and debug bots built using the Bot Framework SDK. You can use the Bot Framework Emulator to test bots running locally on your machine or to connect to bots running remotely. [[Download latest][61] | [Docs][62]]
@@ -205,16 +197,6 @@ A machine learning-based service to build natural language experiences. Quickly 
 [30]:https://www.luis.ai
 [31]:https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/Home
 [32]:https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-luis?view=azure-bot-service-4.0&branch=pr-en-us-1325&tabs=csharp
-
-### QnA Maker
-[QnA Maker][33] is a cloud-based API service that creates a conversational, question-and-answer layer over your data. With QnA Maker, you can build, train and publish a simple question and answer bot based on FAQ URLs, structured documents, product manuals or editorial content in minutes. [[Docs][34]  | [Add qnamaker to your bot][35]]
-
-[33]:https://www.qnamaker.ai/
-[34]:https://aka.ms/qnamaker-docs-home
-[35]:https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-qna?view=azure-bot-service-4.0&branch=pr-en-us-1325&tabs=cs
-
-### Dispatch
-Dispatch tool lets you build language models that allow you to dispatch between disparate components (such as QnA, LUIS and custom code). [[Readme](https://github.com/Microsoft/botbuilder-tools/blob/main/packages/Dispatch#readme)]
 
 ### Speech Services
 Speech Services convert audio to text, perform speech translation and text-to-speech with the unified Speech services. With the speech services, you can integrate speech into your bot, create custom wake words, and author in multiple languages. [[Docs](https://azure.microsoft.com/en-us/services/cognitive-services/speech-services/)]
