@@ -55,8 +55,8 @@ def print_issue(issue):
     # add_label(repo, issue, BOT_SERVICES_LABEL)
 
 def print_status(text, css=''):
-    print(u''+text)
-    has_css = True if (len(css) > 0) else False
+    print(f'{text}')
+    has_css = len(css) > 0
     if has_css:
         OUTPUT_FILE.write(f"<span class='{css}'>")
     OUTPUT_FILE.write(f"{text}</br>")
