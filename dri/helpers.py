@@ -48,7 +48,7 @@ def filter_stale_customer_issues(issue, days_old=60):
 
 def last_touched_by_microsoft(issue, microsoft_members) -> bool:
     comments_paged = issue.get_comments()
-    comment = [msg for msg in comments_paged][-1]
+    comment = list(comments_paged)[-1]
     assert comment
     return comment.user.login.strip().lower() in microsoft_members
 
@@ -76,10 +76,7 @@ def get_msorg_members(github, refresh_in_days=5):
 
 def filter_azure(repo, issue):
     if repo.lower() == 'azure/azure-cli':
-        for label in issue.labels:
-            if label.name == 'Bot Service':
-                return False
-        return True
+        return all(label.name != 'Bot Service' for label in issue.labels)
     return False
 
 def strfdelta(tdelta, fmt):
@@ -97,7 +94,7 @@ def add_last_comment(issue, stale_days=10):
     comments_paged = issue.get_comments()
     if comments_paged.totalCount == 0:
         return None
-    last_comment = ([msg for msg in comments_paged] or [None])[-1]
+    last_comment = (list(comments_paged) or [None])[-1]
     assert last_comment
     if last_comment.created_at > (datetime.utcnow() - timedelta(days=stale_days)):
         # Filter items.

@@ -142,22 +142,31 @@ def main():
             user_filtered_issues = [issue for issue in open_issues if not issue.pull_request]
             user_filtered = False
         else:
-            user_filtered_issues = [issue for issue in open_issues if (not issue.user.login.strip().lower() in \
-                microsoft_members and not issue.pull_request)]
+            user_filtered_issues = [
+                issue
+                for issue in open_issues
+                if issue.user.login.strip().lower() not in microsoft_members
+                and not issue.pull_request
+            ]
 
         if repo_name.lower() != 'azure/azure-cli':
-            no_bs_cr_label = [issue for issue in user_filtered_issues if not filter_bot_service_label(issue) or \
-                not filter_customer_reported_label(issue)]
-
-            if no_bs_cr_label:
+            if no_bs_cr_label := [
+                issue
+                for issue in user_filtered_issues
+                if not filter_bot_service_label(issue)
+                or not filter_customer_reported_label(issue)
+            ]:
                 print_status(f'   No "Bot Services/Customer Reported": Count: {len(no_bs_cr_label)}', 'tab1')
                 for issue in no_bs_cr_label:
                     if user_filtered or not filter_milestone_label(issue):
                         print_issue(issue)
                         repository_output_element.issues.append(OutputIssue("no_bot_services", issue))
 
-            no_crt_label = [issue for issue in user_filtered_issues if not filter_customer_replied_label(issue)]
-            if no_crt_label:
+            if no_crt_label := [
+                issue
+                for issue in user_filtered_issues
+                if not filter_customer_replied_label(issue)
+            ]:
                 print_status(f'   No "Customer Replied": Count: {len(no_crt_label)}', 'tab1')
                 for issue in no_crt_label:
                     if user_filtered in microsoft_members or not filter_milestone_label(issue):
@@ -169,8 +178,11 @@ def main():
             stale_customer_issues = [add_last_comment(issue, stale_days) \
                 for issue in user_filtered_issues if not filter_stale_customer_issues(issue, days_old=stale_days)]
             stale_no_nones = [i for i in stale_customer_issues if i]
-            stale_descending = sorted(stale_no_nones, key=lambda issue: issue.last_comment, reverse=False)
-            if stale_descending:
+            if stale_descending := sorted(
+                stale_no_nones,
+                key=lambda issue: issue.last_comment,
+                reverse=False,
+            ):
                 print_status(f'   90-day stale : Customer issues not touched in more than {stale_days} days: Count: {len(stale_descending)}', 'tab1')
                 print_status(f'      Last touched by {Fore.GREEN}CUSTOMER{Style.RESET_ALL}:', 'tab2')
                 for issue in stale_descending:
@@ -194,9 +206,9 @@ def main():
     OUTPUT_FILE.close()
 
     if sys.platform == 'win32':
-        os.system('start "" "' + FILE_NAME + '"')
+        os.system(f'start "" "{FILE_NAME}"')
     else:
-        os.system('open ' + FILE_NAME)
+        os.system(f'open {FILE_NAME}')
 
 
 if __name__ == "__main__":
